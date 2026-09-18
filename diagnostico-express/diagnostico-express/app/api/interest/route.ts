@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getSupabase } from '@/lib/supabase';
+import { getSupabaseAdmin } from '@/lib/supabase';
 
 export async function PATCH(request: NextRequest) {
   try {
@@ -14,7 +14,7 @@ export async function PATCH(request: NextRequest) {
       return NextResponse.json({ error: 'Valor inválido.' }, { status: 400 });
     }
 
-    const supabase = getSupabase();
+    const supabase = getSupabaseAdmin();
     const { error } = await supabase
       .from('diagnostic_leads')
       .update({ consultation_interest: interest })
